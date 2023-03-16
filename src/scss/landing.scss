@@ -1,0 +1,166 @@
+.landing-page-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    .right-container {
+        height: 300%;
+        width: 100%;
+        background-color: $black;
+        position: fixed;
+        top: -100%;
+        right: -50%;
+        animation: angleInDesktop 0.7s ease-out forwards;
+        animation-delay: 0.3s;
+        transform-origin: center left;
+        
+        @include for-mobile() {
+            height: 100%;
+            width: 300%;
+            right: -100%;
+            top: 50%;
+            animation: angleInMobile 0.7s ease-out forwards;
+            animation-delay: 0.3s;
+            transform-origin: top center;
+        }
+    }
+
+    .mishra-en, .akhand-en {
+        position: absolute;
+        font-weight: 700;
+        color: $black;
+        font-size: 4.4rem;
+        margin: 0;
+
+        @include for-mobile() {
+            font-size: 2.5rem;
+        }
+    }
+    
+    .mishra-jp, .akhand-jp {
+        position: absolute;
+        font-family: 'Noto Sans JP', sans-serif;
+        font-weight: 700;
+        color: $black;
+        font-size: 4.4rem;
+        margin: 0;
+        word-break: keep-all;
+        
+        @include for-mobile() {
+            font-size: 2.5rem;
+        }
+    }
+
+    .akhand-en, .akhand-jp {
+        color: white;
+    }
+
+    .mishra-en {
+        animation: slideMishraEn 11s linear infinite;
+    }
+    .mishra-jp {
+        animation: slideMishraJp 11s linear infinite;
+    }
+    .akhand-en {
+        animation: slideAkhandEn 11s linear infinite;
+    }
+    .akhand-jp {
+        animation: slideAkhandJp 11s linear infinite;
+    }
+}
+
+@keyframes angleInDesktop {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(40deg)
+    }
+}
+
+@keyframes angleInMobile {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(-49deg)
+    }
+}
+
+@keyframes slideMishraEn {
+    0% {
+        margin-left: 100%;
+    }
+    2% {
+        margin-left: 100%;
+    }
+    4% {
+        margin-left: 0;
+    }
+    51% {
+        margin-left: 0;
+    }
+    53% {
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+@keyframes slideMishraJp {
+    0% {
+        margin-left: 100%;
+    }
+    55% {
+        margin-left: 100%;
+    }
+    57% {
+        margin-left: 0;
+    }
+    98% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+@keyframes slideAkhandEn {
+    0% {
+        margin-right: 100%;
+    }
+    2% {
+        margin-right: 100%;
+    }
+    4% {
+        margin-right: 0;
+    }
+    51% {
+        margin-right: 0;
+    }
+    53% {
+        margin-right: 100%;
+    }
+    100% {
+        margin-right: 100%;
+    }
+}
+
+@keyframes slideAkhandJp {
+    0% {
+        margin-right: 100%;
+    }
+    55% {
+        margin-right: 100%;
+    }
+    57% {
+        margin-right: 0;
+    }
+    98% {
+        margin-right: 0;
+    }
+    100% {
+        margin-right: 100%;
+    }
+}
