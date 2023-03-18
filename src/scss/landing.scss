@@ -13,6 +13,7 @@
         animation: angleInDesktop 0.7s ease-out forwards;
         animation-delay: 0.3s;
         transform-origin: center left;
+        z-index: 100;
         
         @include for-mobile() {
             height: 100%;
@@ -42,30 +43,92 @@
         font-family: 'Noto Sans JP', sans-serif;
         font-weight: 700;
         color: $black;
-        font-size: 4.4rem;
+        font-size: 4rem;
         margin: 0;
         word-break: keep-all;
         
         @include for-mobile() {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
         }
+    }
+
+    .mishra-en {
+        margin-left: 100%;
+        z-index: 99;
+        animation: 
+            mishraEnFlicker 13s ease-in-out 3s infinite both,
+            slideMishraEn 0.4s linear 0.33s forwards;
+        text-shadow: 10px 30px 40px rgba(0,0,0,0.1),
+        5px 20px 20px rgba(0,0,0,0.03),
+        6px 23px 25px rgba(0,0,0,0.05),
+        7px 27px 20px rgba(0,0,0,0.07);
+    }
+
+    .mishra-jp {
+        margin-top: -5px;
+        margin-left: -6px;
+        text-shadow: 
+            10px 30px 40px rgba(0,0,0,0.1),
+            5px 20px 20px rgba(0,0,0,0.03),
+            6px 23px 25px rgba(0,0,0,0.05),
+            7px 27px 20px rgba(0,0,0,0.07);
     }
 
     .akhand-en, .akhand-jp {
         color: white;
     }
 
-    .mishra-en {
-        animation: slideMishraEn 11s linear infinite;
+    .one-0 {
+        animation: flickerOut 13s ease-in-out 3s infinite both;
     }
-    .mishra-jp {
-        animation: slideMishraJp 11s linear infinite;
+
+    .one-1 {
+        animation: flickerOut 13s ease-in-out 4s infinite both;
     }
+
+    .three-0, .three-1, .three-2 {
+        opacity: 0;
+        animation: mishraJaFlicker 13s ease-in-out 3s infinite both;
+    }
+
+    .three-0 {
+        animation: 
+            flickerIn 13s ease-in-out 3s infinite both,
+            mishraJaFlicker 13s ease-in-out 3s infinite both;
+    }
+    
+    .three-2 {
+        animation: 
+            flickerIn 13s ease-in-out 4s infinite both,
+            mishraJaFlicker 13s ease-in-out 3s infinite both;
+    }
+
+    // .mishra-en {
+    //     animation: slideMishraEn 11s linear infinite;
+    // }
+    // .mishra-jp {
+    //     animation: slideMishraJp 11s linear infinite;
+    // }
     .akhand-en {
-        animation: slideAkhandEn 11s linear infinite;
+        z-index: 101;
+        margin-right: 100%;
+        animation: slideAkhandEn 0.4s linear 0.33s forwards;
     }
     .akhand-jp {
-        animation: slideAkhandJp 11s linear infinite;
+        // animation: slideAkhandJp 13s linear infinite;
+        opacity: 0;
+        // animation: mishraJaFlicker 13s ease-in-out 3.2s infinite both;
+    }
+
+    .ball {
+        position: absolute;
+        border-radius: 50%;
+        transition: left 0.7s ease-out 0.7s;
+        z-index: 102;
+    }
+
+    .balls-initial {
+        left: -300px !important;
     }
 }
 
@@ -87,24 +150,90 @@
     }
 }
 
+@keyframes flickerOut {
+    10%, 12%, 14.2% {
+        opacity: 1;
+    }
+    10.4%, 11.2%, 13%, 13.8% {
+        opacity: 0.2;
+    }
+    10.8%, 11.6%, 13.4% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes mishraEnFlicker {
+    40%, 42% {
+        opacity: 1;
+    }
+    40.4%, 41.2%, 43%, 43.8% {
+        opacity: 0.2;
+    }
+    40.8%, 41.6%, 43.4% {
+        opacity: 0.8;
+    }
+    44.2% {
+        opacity: 0;
+    }
+    90%, 92% {
+        opacity: 0;
+    }
+    90.4%, 91.2%, 93%, 93.8% {
+        opacity: 0.8;
+    }
+    90.8%, 91.6%, 93.4% {
+        opacity: 0.2;
+    }
+    94.2% {
+        opacity: 1;
+    }
+}
+
+@keyframes flickerIn {
+    10%, 12%, 14.2% {
+        opacity: 0;
+    }
+    10.4%, 11.2%, 13%, 13.8% {
+        opacity: 0.8;
+    }
+    10.8%, 11.6%, 13.4% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes mishraJaFlicker {
+    40%, 42% {
+        opacity: 0;
+    }
+    40.4%, 41.2%, 43%, 43.8% {
+        opacity: 0.8;
+    }
+    44.2%, 45.49%, 100% {
+        opacity: 1;
+    }
+    40.8%, 41.6%, 43.4% {
+        opacity: 0.2;
+    }
+    90%, 92% {
+        opacity: 1;
+    }
+    90.4%, 91.2%, 93%, 93.8% {
+        opacity: 0.2;
+    }
+    90.8%, 91.6%, 93.4% {
+        opacity: 0.8;
+    }
+    94.2%, 100% {
+        opacity: 0;
+    }
+}
+
 @keyframes slideMishraEn {
     0% {
         margin-left: 100%;
     }
-    2% {
-        margin-left: 100%;
-    }
-    4% {
-        margin-left: 0;
-    }
-    51% {
-        margin-left: 0;
-    }
-    53% {
-        margin-left: 100%;
-    }
     100% {
-        margin-left: 100%;
+        margin-left: 0;
     }
 }
 
@@ -130,20 +259,8 @@
     0% {
         margin-right: 100%;
     }
-    2% {
-        margin-right: 100%;
-    }
-    4% {
-        margin-right: 0;
-    }
-    51% {
-        margin-right: 0;
-    }
-    53% {
-        margin-right: 100%;
-    }
     100% {
-        margin-right: 100%;
+        margin-right: 0;
     }
 }
 
@@ -155,10 +272,10 @@
         margin-right: 100%;
     }
     57% {
-        margin-right: 0;
+        margin-right: 1.5%;
     }
     98% {
-        margin-right: 0;
+        margin-right: 1.5%;
     }
     100% {
         margin-right: 100%;
