@@ -125,10 +125,34 @@
         border-radius: 50%;
         transition: left 0.7s ease-out 0.7s;
         z-index: 102;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     }
 
     .balls-initial {
         left: -300px !important;
+    }
+
+    .box {
+        position: absolute;
+        transition: box-shadow 0.7s ease-in-out;
+        z-index: 101;
+        box-shadow: inset 10px 10px 40px 2px rgba(0, 0, 0, 0.35);
+        background-color: $black;
+        animation: changeBackground 0.2s linear forwards;
+    }
+
+    .boxes-initial {
+        box-shadow: none;
+        background-color: transparent !important;
+    }
+}
+
+@keyframes changeBackground {
+    0% {
+        background-color: $black;
+    }
+    100% {
+        background-color: #1E1E1E;
     }
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Balls from './Balls';
+import Boxes from './Boxes';
 
 function useForceUpdate(){
     const [value, setValue] = useState(0);
@@ -44,6 +45,7 @@ const LandingPage = () => {
     return(
         <div className='landing-page-container'>
             <Balls />
+            <Boxes />
             <div className='left-container' />
             <div className='right-container' />
             {isShown && <>
