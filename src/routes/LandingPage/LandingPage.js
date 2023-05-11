@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useForceUpdate from '../../hooks/useForceUpdate';
 import Balls from './Balls';
 import Boxes from './Boxes';
-
-function useForceUpdate(){
-    const [value, setValue] = useState(0);
-    return () => setValue(value => value + 1);
-}
 
 const LandingPage = () => {
     const [isShown, setIsShown] = useState(false);
@@ -14,7 +10,7 @@ const LandingPage = () => {
     const akhandEnRef = useRef(null);
     const akhandJpRef = useRef(null);
     const waitBeforeShow = 800
-    const forceUpdate = useForceUpdate()
+    useForceUpdate()
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -22,10 +18,6 @@ const LandingPage = () => {
         }, waitBeforeShow);
         return () => clearTimeout(timer);
     }, [waitBeforeShow]);
-
-    useEffect(() => {
-        window.addEventListener('resize', forceUpdate)
-    }, [])
 
     setTimeout(() => {
         if (mishraEnRef.current && mishraEnRef.current.clientHeight > 0) {

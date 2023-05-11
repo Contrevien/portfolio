@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import React, { useEffect, useState } from 'react'
+import useForceUpdateHook from '../../hooks/useForceUpdate'
 import { getScreenSize } from '../../utils/utils'
 
 const BALLS_RADII = {
@@ -32,7 +33,19 @@ const BALLS_COLORS = [
     '#F4C82E', '#174E62', '#26C485', '#993955',
 ]
 
-const Ball = ({x, y, r, c, slide}) => (
+const BALLS_SHADOWS = {
+    200: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03), 6px 23px 25px rgba(0,0,0,0.05), 7px 27px 20px rgba(0,0,0,0.07)',
+    100: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03), 6px 23px 25px rgba(0,0,0,0.05), 7px 27px 20px rgba(0,0,0,0.07)',
+    75: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03), 6px 23px 25px rgba(0,0,0,0.05), 7px 27px 20px rgba(0,0,0,0.07)',
+    60: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03), 6px 23px 25px rgba(0,0,0,0.05)',
+    40: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03), 6px 23px 25px rgba(0,0,0,0.05)',
+    16: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03)',
+    20: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03)',
+    10: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03)',
+    8: '10px 30px 40px rgba(0,0,0,0.1), 5px 20px 20px rgba(0,0,0,0.03)',
+}
+
+const Ball = ({x, y, r, c, s, slide}) => (
     <div className={classNames('ball', {
         'balls-initial': !slide,
     })} style={{
@@ -41,6 +54,7 @@ const Ball = ({x, y, r, c, slide}) => (
         width: `${r}px`,
         height: `${r}px`,
         backgroundColor: c,
+        boxShadow: s,
     }} />
 )
 
@@ -54,6 +68,7 @@ const Balls = () => {
             y: window.innerHeight * (BALLS_Y[getScreenSize()][i]/100),
             c: BALLS_COLORS[i],
             r: r,
+            s: BALLS_SHADOWS[r],
         })))
 
         setTimeout(() => {
@@ -62,8 +77,6 @@ const Balls = () => {
     }, [])
 
     const radiiSet = BALLS_RADII[getScreenSize()]
-
-    
 
     return (
         balls.map((b) => <Ball {...b} slide={slide} key={`${b.x}${b.y}`} />)
